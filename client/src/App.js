@@ -25,6 +25,8 @@ const App = () => {
     getMovieList();
   }, []);
 
+
+
   return (
     <>
     {console.log(movieList)}
