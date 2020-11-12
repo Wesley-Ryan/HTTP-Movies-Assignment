@@ -1,6 +1,9 @@
+/** @jsx jsx */
 import React from "react";
 import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
+
+import {css, jsx} from '@emotion/core'
 
 function MovieList({ movies }) {
   return (
@@ -12,6 +15,16 @@ function MovieList({ movies }) {
           </Link>
         ))
       }
+      <Link 
+      css={{
+          textDecoration: 'none',
+          color: 'white',
+          border: '1px solid grey',
+          padding: '5px 10px',
+          backgroundColor: 'lightblue'
+      }}
+      to={`/add-movie`}
+      >Add New Movie</Link>
     </div>
   );
 }
