@@ -1,12 +1,14 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 import { useForm } from "react-hook-form";
 import { useParams, useHistory } from 'react-router-dom'
 
 import {css, jsx} from '@emotion/core'
 
-const UpdateMovieForm = () => {
+
+
+const AddMovieForm = () => {
     const [currentMovie, setCurrentMovie] = useState();
     const params = useParams();
     const history = useHistory()
@@ -15,18 +17,7 @@ const UpdateMovieForm = () => {
         
     })
 
-    const editMovie = (updatedMovie) => { 
-        axios
-        .put(`http://localhost:5000/api/movies/${updatedMovie.id}`, updatedMovie)
-        .then((res) => { 
-            console.log(res)
-        })
-        .catch((err) => console.log(err.response));
-    };
     
-   
-    
-  
     const fetchMovie = (id) => {
       axios
         .get(`http://localhost:5000/api/movies/${id}`)
@@ -44,11 +35,6 @@ const UpdateMovieForm = () => {
         .catch((err) => console.log(err.response));
     };
 
-    useEffect(() => {
-        fetchMovie(params.id);
-        
-      }, [params.id]);
-
       
 
     const onSubmit = data => { 
@@ -63,9 +49,8 @@ const UpdateMovieForm = () => {
             stars: starArr
         }
         
-        editMovie(updatedMovie)
-        setCurrentMovie(updatedMovie)
-        history.push(`/movies/${updatedMovie.id}`)
+        
+        history.push(`/`)
     }
 
 
@@ -133,4 +118,4 @@ const UpdateMovieForm = () => {
      );
 }
  
-export default UpdateMovieForm;
+export default AddMovieForm;
