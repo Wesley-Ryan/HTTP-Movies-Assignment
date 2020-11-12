@@ -15,7 +15,7 @@ const initialMovie = {
 }
 
 const UpdateMovieForm = () => {
-    const [movie, setMovie] = useState({});
+    const [currentMovie, setCurrentMovie] = useState();
     const params = useParams();
     const history = useHistory()
     const {register, handleSubmit, reset}= useForm({ 
@@ -39,7 +39,7 @@ const UpdateMovieForm = () => {
       axios
         .get(`http://localhost:5000/api/movies/${id}`)
         .then((res) => { 
-            setMovie(res.data)
+            setCurrentMovie(res.data)
             reset({ 
                 director: res.data.director, 
                 metascore: res.data.metascore,
@@ -64,7 +64,7 @@ const UpdateMovieForm = () => {
 
         
         const updatedMovie = { 
-            id: movie.id,
+            id: currentMovie.id,
             director: data.director, 
             metascore: data.metascore,
             title: data.title,
@@ -72,7 +72,7 @@ const UpdateMovieForm = () => {
         }
         
         editMovie(updatedMovie)
-        setMovie(updatedMovie)
+        setCurrentMovie(updatedMovie)
         history.push(`/movies/${updatedMovie.id}`)
     }
 
